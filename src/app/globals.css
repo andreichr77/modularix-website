@@ -1,0 +1,93 @@
+/* Design tokens + base. Page-specific styles live in src/styles/*.css, scoped to .home / .journey / .sub. */
+:root{
+  --ground:#040814; --ground-2:#0B1E42; --blue:#4FB0FF; --blue-mid:#0B7DF2; --blue-deep:#0A2CA0;
+  --muted:#8AA2C9; --paper:#EAF1FF; --alert:#EA2322; --dim:#2E4F86; --cw:#5ED0EA; --line:rgba(79,176,255,.22);
+  --display:"Archivo",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --gutter-l:max(16px,env(safe-area-inset-left,0px)); --gutter-r:max(16px,env(safe-area-inset-right,0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--ground);color:var(--paper);font-family:var(--display);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+[hidden]:not([hidden=until-found i]){display:none!important}
+img{max-width:100%}
+footer nav{display:flex;gap:16px;flex-wrap:wrap}
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--blue);color:#04101F;padding:10px 14px}
+.skip:focus{left:8px;top:8px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+header .logo img{display:block;height:28px;width:auto}
+@media (max-width:760px){header .logo img{height:24px}}
+
+/* Header: right-hand group with the Get in touch button */
+header .hr{display:flex;align-items:center;gap:22px}
+header .getin{position:relative;display:inline-flex;align-items:center;gap:10px;font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;color:#fff;white-space:nowrap;pointer-events:auto;
+  padding:11px 16px;border-radius:0;border:1px solid rgba(191,216,255,.75);
+  background:linear-gradient(rgba(255,255,255,.13) 1px,transparent 1px) 0 0/100% 8px,linear-gradient(90deg,rgba(255,255,255,.13) 1px,transparent 1px) 0 0/8px 100%,var(--blue-mid);transition:background-color .2s,border-color .2s}
+header .getin::before,header .getin::after{content:"";position:absolute;width:6px;height:6px;border:1px solid #BFD8FF;pointer-events:none}
+header .getin::before{left:-4px;top:-4px;border-right:0;border-bottom:0}
+header .getin::after{right:-4px;bottom:-4px;border-left:0;border-top:0}
+header .getin i{font-style:normal;transition:transform .2s}
+header .getin:hover{background-color:#2A93FF;border-color:#fff} header .getin:hover i{transform:translateX(3px)}
+@media (max-width:560px){header .hr .sheet,header .hr .sheetwrap{display:none}}
+
+/* Solutions dropdown */
+header .dd{position:relative;display:inline-block;padding:10px 0;margin:-10px 0}
+header .dd>button{font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--muted);background:none;border:0;padding:0;cursor:pointer;display:inline-flex;align-items:center;gap:7px;transition:color .2s}
+header .dd>button:hover,header .dd>button[aria-expanded="true"],header .dd>button.on{color:var(--paper)}
+header .dd>button.on{color:var(--blue)}
+header .dd>button i{width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .2s}
+header .dd>button[aria-expanded="true"] i{transform:translateY(1px) rotate(-135deg)}
+header .dd-menu{position:absolute;left:-16px;top:100%;min-width:300px;padding:8px;background:rgba(4,8,20,.97);border:1px solid rgba(79,176,255,.35);border-radius:2px;backdrop-filter:blur(10px);box-shadow:0 18px 40px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:30}
+header .dd-menu.open{opacity:1;visibility:visible;transform:none}
+header .dd-menu a{display:grid;grid-template-columns:54px 1fr auto;align-items:baseline;gap:10px;padding:11px 12px;text-decoration:none;color:var(--paper);letter-spacing:normal;text-transform:none;border-left:2px solid transparent;transition:background .15s,border-color .15s}
+header .dd-menu a:hover{background:rgba(79,176,255,.1);border-left-color:var(--blue)}
+header .dd-menu b{font:500 10px var(--mono);letter-spacing:.14em;color:var(--blue)}
+header .dd-menu span{font:500 15px var(--display)}
+header .dd-menu em{font:normal 10px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+/* Blueprint rectangular buttons, shared with the navbar "Get in touch" */
+:is(.home,.sub,.journey) .cta a:not(#x),
+.sub .pview:not(#x),
+.sub .pv button:not(#x),
+.home .mail button:not(#x){
+  position:relative;display:inline-flex;align-items:center;gap:10px;border-radius:0;
+  font:500 11px var(--mono);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap;
+  padding:14px 20px;color:#fff;border:1px solid rgba(191,216,255,.75);cursor:pointer;
+  background:linear-gradient(rgba(255,255,255,.13) 1px,transparent 1px) 0 0/100% 8px,linear-gradient(90deg,rgba(255,255,255,.13) 1px,transparent 1px) 0 0/8px 100%,var(--blue-mid);
+  transition:background-color .2s,border-color .2s;backdrop-filter:none}
+:is(.home,.sub,.journey) .cta a:not(.primary):not(#x){
+  background:linear-gradient(rgba(79,176,255,.12) 1px,transparent 1px) 0 0/100% 8px,linear-gradient(90deg,rgba(79,176,255,.12) 1px,transparent 1px) 0 0/8px 100%,rgba(4,8,20,.55);
+  border-color:rgba(79,176,255,.6)}
+:is(.home,.sub,.journey) .cta a:not(#x)::before,.sub .pview:not(#x)::before,.sub .pv button:not(#x)::before,.home .mail button:not(#x)::before,
+:is(.home,.sub,.journey) .cta a:not(#x)::after,.sub .pview:not(#x)::after,.sub .pv button:not(#x)::after,.home .mail button:not(#x)::after{
+  content:"";position:absolute;width:6px;height:6px;border:1px solid #BFD8FF;pointer-events:none}
+:is(.home,.sub,.journey) .cta a:not(#x)::before,.sub .pview:not(#x)::before,.sub .pv button:not(#x)::before,.home .mail button:not(#x)::before{left:-4px;top:-4px;border-right:0;border-bottom:0}
+:is(.home,.sub,.journey) .cta a:not(#x)::after,.sub .pview:not(#x)::after,.sub .pv button:not(#x)::after,.home .mail button:not(#x)::after{right:-4px;bottom:-4px;border-left:0;border-top:0}
+:is(.home,.sub,.journey) .cta a:not(#x):hover,.sub .pview:not(#x):hover,.sub .pv button:not(#x):hover,.home .mail button:not(#x):hover{background-color:#2A93FF;border-color:#fff;color:#fff}
+:is(.home,.sub,.journey) .cta a:not(.primary):not(#x):hover{background-color:rgba(79,176,255,.28)}
+.sub .pv button:not(#x){background-color:rgba(4,8,20,.8)}
+.sub .pv button:not(#x):hover{background-color:#2A93FF}
+.home .mail code{border-radius:0}
+
+/* Mobile menu: hamburger on the right, panel holds the nav and Get in touch */
+header .mm{display:none;position:relative}
+@media (max-width:760px){
+  header .getin.desk{display:none}
+  header .mm{display:block}
+  header .hr{gap:0}
+}
+header .mm-btn{width:42px;height:38px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;background:rgba(4,8,20,.6);border:1px solid rgba(191,216,255,.6);border-radius:0;cursor:pointer;padding:0;pointer-events:auto}
+header .mm-btn span{display:block;width:18px;height:1.5px;background:#fff;transition:transform .2s,opacity .2s}
+header .mm-btn.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+header .mm-btn.open span:nth-child(2){opacity:0}
+header .mm-btn.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+header .mm-scrim{position:fixed;inset:0;background:rgba(2,5,14,.55);z-index:-1}
+header .mm-panel{position:absolute;right:0;top:calc(100% + 10px);width:min(280px,calc(100vw - 32px));display:flex;flex-direction:column;padding:8px;background:rgba(4,8,20,.97);border:1px solid rgba(79,176,255,.35);box-shadow:0 18px 40px rgba(0,0,0,.55);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;pointer-events:auto}
+header .mm-panel.open{opacity:1;visibility:visible;transform:none}
+header .mm-panel>a:not(.getin),header .mm-sol>button,header .mm-sol .sub{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;padding:13px 12px;font:500 12px var(--mono);letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:var(--paper);background:none;border:0;border-left:2px solid transparent;cursor:pointer}
+header .mm-panel a.on,header .mm-sol>button.on{color:var(--blue);border-left-color:var(--blue)}
+header .mm-sol>button i{width:6px;height:6px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg);transition:transform .2s}
+header .mm-sol>button[aria-expanded="true"] i{transform:rotate(-135deg)}
+header .mm-sol .sub{padding-left:26px;color:var(--muted);font-size:11px;letter-spacing:.08em;text-transform:none}
+header .mm-panel .getin{margin:10px 4px 4px;justify-content:center}

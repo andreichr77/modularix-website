@@ -1,0 +1,13 @@
+node_modules
+.next
+out
+.DS_Store
+*.tsbuildinfo
+next-env.d.ts
+.env*.local
+
+# heavy source files and leftovers, not needed by the site
+models-source/
+Claude outputs/
+/configurator/
+/Configurator/

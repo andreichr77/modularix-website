@@ -1,0 +1,42 @@
+.sub{margin:0;background:var(--ground);color:var(--paper);font-family:var(--display);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:linear-gradient(rgba(79,176,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(79,176,255,.05) 1px,transparent 1px);background-size:72px 72px}
+.sub a{color:inherit}
+.sub header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:18px var(--gutter-r) 14px var(--gutter-l);background:linear-gradient(180deg,rgba(4,8,20,.95),rgba(4,8,20,.75));backdrop-filter:blur(8px);border-bottom:1px solid rgba(79,176,255,.1)}
+.sub header .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em;font-size:15px;text-decoration:none}
+.sub header .logo i{display:inline-block;width:14px;height:14px;background:var(--blue-mid);border-radius:0;position:relative}
+.sub header .logo i::after{content:"";position:absolute;right:-5px;bottom:-5px;width:7px;height:7px;background:var(--alert);border-radius:1px}
+.sub nav.top{display:flex;gap:22px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.sub nav.top a{text-decoration:none;color:var(--muted)} .sub nav.top a.on{color:var(--blue)} .sub nav.top a:hover{color:var(--paper)}
+@media (max-width:760px){.sub nav.top{display:none}}
+.sub .sheet{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase;text-align:right}
+.sub main{padding:clamp(48px,7vw,96px) var(--gutter-r) 0 var(--gutter-l)}
+.sub .wrap{max-width:1140px;margin:0 auto}
+.sub .legend{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin:0 0 18px;display:flex;gap:12px;align-items:center}
+.sub h1,.sub h2,.sub h3{font-weight:700;letter-spacing:-.025em;line-height:.98;margin:0 0 16px;text-wrap:balance}
+.sub h1{font-size:clamp(38px,6.4vw,92px)} .sub h2{font-size:clamp(28px,4vw,56px);margin-top:clamp(56px,8vw,112px)} .sub h3{font-size:clamp(20px,2.2vw,28px);letter-spacing:-.015em;line-height:1.1}
+.sub .b{color:var(--blue)}
+.sub .lede{color:var(--muted);font-size:clamp(16px,1.35vw,20px);line-height:1.45;margin:0;max-width:36rem}
+.sub p{line-height:1.5} .sub .body p{color:var(--muted);font-size:16px;max-width:38rem}
+.sub .mono{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sub .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.sub .cta a{font-weight:500;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:999px;border:1px solid rgba(79,176,255,.55);color:var(--paper);transition:background .2s}
+.sub .cta a.primary{background:var(--blue);color:#04101F;border-color:var(--blue)} .sub .cta a:hover{background:rgba(79,176,255,.16)} .sub .cta a.primary:hover{background:#7CC6FF}
+.sub .grid2{display:grid;grid-template-columns:1fr;gap:28px} @media (min-width:900px){.sub .grid2{grid-template-columns:1fr 1fr;gap:48px;align-items:start}}
+.sub .grid3{display:grid;grid-template-columns:1fr;gap:16px} @media (min-width:760px){.sub .grid3{grid-template-columns:repeat(3,1fr)}}
+.sub .card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(11,30,66,.55),rgba(4,8,20,.15));padding:24px;border-radius:0;min-width:0}
+.sub .card .n{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--blue)} .sub .card h3{margin:36px 0 8px} .sub .card p{margin:0;color:var(--muted);font-size:15px}
+.sub .fig{border:1px solid var(--line);border-radius:0;overflow:hidden;background:#07122B}
+.sub .fig img{display:block;width:100%;height:auto} .sub .fig figcaption{padding:12px 16px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.sub .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:0;overflow:hidden;margin:32px 0}
+@media (min-width:760px){.sub .stats{grid-template-columns:repeat(4,1fr)}}
+.sub .stats div{background:var(--ground);padding:22px 20px} .sub .stats b{display:block;font-size:clamp(34px,4vw,56px);font-weight:700;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums}
+.sub .stats b.iv{color:var(--alert)} .sub .stats b.iii{color:var(--blue)} .sub .stats span{display:block;margin-top:10px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.sub .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:0}
+.sub table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px} .sub th,.sub td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+.sub th{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500} .sub tr:last-child td{border-bottom:0}
+.sub .tier{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;border-radius:0;white-space:nowrap}
+.sub .tier.iv{background:rgba(234,35,34,.18);color:#FF8A89;border:1px solid rgba(234,35,34,.5)} .sub .tier.iii{background:rgba(79,176,255,.14);color:var(--blue);border:1px solid rgba(79,176,255,.45)}
+.sub .tl{list-style:none;margin:0;padding:0;border-left:1px solid var(--line)} .sub .tl li{padding:0 0 22px 22px;position:relative} .sub .tl li::before{content:"";position:absolute;left:-4px;top:7px;width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.sub .tl b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--blue);margin-bottom:4px} .sub .tl p{margin:0;color:var(--muted);font-size:15px}
+.sub footer{margin-top:clamp(64px,8vw,120px);padding:28px var(--gutter-r) calc(28px + env(safe-area-inset-bottom,0px)) var(--gutter-l);border-top:1px solid var(--line);font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(138,162,201,.6);display:flex;flex-wrap:wrap;gap:10px 28px;justify-content:space-between}
+.sub footer a{color:var(--muted);text-decoration:none} .sub footer nav{display:flex;gap:16px;flex-wrap:wrap}

@@ -1,0 +1,69 @@
+/* Layout: fixed WebGL film behind seven full-height scroll beats; the camera follows one container from the factory floor to the pad. */
+.journey{margin:0;background:var(--ground);color:var(--paper);font-family:var(--display);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.journey a{color:inherit}
+.journey #stage{position:fixed;inset:0;z-index:0;background:radial-gradient(120% 90% at 50% 0%,#0B1E42 0%,var(--ground) 55%,#030610 100%)}
+.journey #stage canvas{display:block;width:100%;height:100%}
+.journey header{position:fixed;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:18px var(--gutter-r) 0 var(--gutter-l);pointer-events:none}
+.journey header::before{content:"";position:absolute;left:0;right:0;top:calc(-1 * env(safe-area-inset-top,0px));height:calc(72px + env(safe-area-inset-top,0px));background:linear-gradient(180deg,rgba(4,8,20,.92) 0%,rgba(4,8,20,.6) 55%,transparent 100%);pointer-events:none}
+.journey header>*{position:relative;pointer-events:auto}
+.journey header .logo{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em;font-size:15px;text-decoration:none}
+.journey header .logo i{display:inline-block;width:14px;height:14px;background:var(--blue-mid);border-radius:2px;position:relative}
+.journey header .logo i::after{content:"";position:absolute;right:-5px;bottom:-5px;width:7px;height:7px;background:var(--alert);border-radius:1px}
+.journey nav.top{display:flex;gap:22px;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.journey nav.top a{text-decoration:none;color:var(--muted)} .journey nav.top a.on{color:var(--blue)} .journey nav.top a:hover{color:var(--paper)}
+@media (max-width:760px){.journey nav.top{display:none}}
+.journey .sheetwrap{text-align:right}
+.journey .sheet{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+.journey .prod{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:var(--blue);text-transform:uppercase;margin-top:4px}
+@media (max-width:760px){.journey .prod{display:none}}
+.journey #story{position:relative;z-index:1}
+.journey .beat{height:120vh;height:120svh}
+.journey #copy{position:fixed;inset:0;z-index:3;pointer-events:none}
+.journey #copy::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 52%,rgba(4,8,20,.8) 100%)}
+@media (max-width:760px){.journey #copy::before{background:linear-gradient(180deg,transparent 56%,rgba(4,8,20,.88) 100%)}}
+.journey .copy{position:absolute;left:var(--gutter-l);right:var(--gutter-r);bottom:calc(14vh + env(safe-area-inset-bottom,0px));max-width:34rem;opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .45s ease}
+.journey .copy.on{opacity:1;transform:none}
+.journey .copy.last{pointer-events:none}.journey .copy.last.on{pointer-events:auto}
+.journey .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin:0 0 14px;display:flex;gap:12px;align-items:center}
+.journey h1,.journey h2{font-weight:700;letter-spacing:-.025em;line-height:.98;margin:0 0 16px;text-wrap:balance;text-shadow:0 2px 24px rgba(4,8,20,.6)}
+.journey h1{font-size:clamp(40px,7.2vw,104px)} .journey h2{font-size:clamp(32px,5.4vw,76px)}
+.journey .b{color:var(--blue)}
+.journey .copy p{color:var(--muted);font-size:clamp(15px,1.25vw,19px);line-height:1.45;margin:0;max-width:30rem}
+.journey .hint{position:fixed;z-index:3;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:10px;pointer-events:none;transition:opacity .4s}
+.journey .hint.off{opacity:0}
+.journey .hint i{width:1px;height:34px;background:linear-gradient(var(--blue),transparent);display:block;animation:drop 1.8s ease-in-out infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.journey .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.journey .cta a{font-weight:500;font-size:15px;text-decoration:none;padding:13px 22px;border-radius:999px;border:1px solid rgba(79,176,255,.55);color:var(--paper);transition:background .2s}
+.journey .cta a.primary{background:var(--blue);color:#04101F;border-color:var(--blue)} .journey .cta a:hover{background:rgba(79,176,255,.16)} .journey .cta a.primary:hover{background:#7CC6FF}
+.journey .foot{margin-top:40px;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(138,162,201,.6)}
+.journey #progress{position:fixed;left:0;right:0;bottom:0;height:2px;z-index:6;background:rgba(79,176,255,.12)}
+.journey #progress i{display:block;height:100%;width:0;background:var(--blue)}
+.journey #nowebgl{display:none;position:fixed;inset:0;z-index:1;align-items:center;justify-content:center;color:var(--muted);font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-align:center;padding:24px}
+@media (prefers-reduced-motion:reduce){.journey .hint i{animation:none}.journey .copy{transition:none}}
+
+.journey .copy .foot{margin-top:56px}
+.journey .copy .cta{margin-top:32px}
+
+/* Blueprint HUD: stage tracker under the header and a telemetry panel. */
+.journey #hud{position:fixed;z-index:5;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:var(--gutter-l);right:var(--gutter-r);display:flex;gap:18px;align-items:flex-end;font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(138,162,201,.55);pointer-events:none}
+.journey #hud .chip{position:relative;flex:1;max-width:190px;padding-bottom:8px;transition:color .3s}
+.journey #hud .chip b{font-weight:500;margin-right:6px;color:inherit;opacity:.8}
+.journey #hud .chip::before{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(79,176,255,.18)}
+.journey #hud .chip i{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--blue);transform-origin:left;transform:scaleX(0);box-shadow:0 0 10px rgba(79,176,255,.8)}
+.journey #hud .chip.on{color:var(--blue)} .journey #hud .chip.done{color:var(--paper)}
+.journey #hud #hud-pct{margin-left:auto;color:var(--blue)}
+@media (max-width:760px){.journey #hud{gap:8px;font-size:9px;letter-spacing:.1em}.journey #hud #hud-pct{display:none}.journey #hud .chip b{display:none}}
+.journey #tele{position:fixed;z-index:4;right:var(--gutter-r);bottom:calc(64px + env(safe-area-inset-bottom,0px));width:236px;padding:12px 14px 6px;border:1px solid var(--line);background:rgba(4,8,20,.66);backdrop-filter:blur(6px);font-family:var(--mono);pointer-events:none}
+.journey #tele .th{margin:0 0 8px;display:flex;justify-content:space-between;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.journey #tele .th span{color:rgba(138,162,201,.6)}
+.journey #tele dl{margin:0}.journey #tele dl div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-top:1px solid rgba(79,176,255,.12);font-size:10px;letter-spacing:.1em;text-transform:uppercase}
+.journey #tele dt{color:rgba(138,162,201,.6)} .journey #tele dd{margin:0;color:var(--paper);text-align:right}
+@media (max-width:900px){.journey #tele{display:none}}
+
+.journey #labels{position:fixed;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+.journey .lbl{position:absolute;left:0;top:0;opacity:0;transition:opacity .35s;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);white-space:nowrap}
+.journey .lbl.on{opacity:1}
+.journey .lbl i{position:absolute;left:-3px;top:-3px;width:6px;height:6px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px var(--blue)}
+.journey .lbl span{position:absolute;left:14px;top:-9px;padding:3px 8px;border:1px solid var(--line);background:rgba(4,8,20,.7)}
+.journey .lbl::before{content:"";position:absolute;left:3px;top:0;width:11px;height:1px;background:var(--blue)}

@@ -1,0 +1,6 @@
+models-source/
+Claude outputs/
+configurator/
+Configurator/
+node_modules/
+.next/

@@ -1,0 +1,3 @@
+.cfgpage{height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+.cfgpage header{flex:0 0 auto}
+.cfgframe{flex:1 1 auto;width:100%;min-height:0;border:0;display:block;background:#040814}
