@@ -194,7 +194,8 @@ tr.opt td{color:var(--muted)}
 
 /* 3D view */
 :root{--v3d-bg:#050B1C;--v3d-floor:#17294F}
-.v3d{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}
+.v3d{margin-top:0;padding-top:0;margin-bottom:24px}
+.planblock{padding-top:18px;border-top:1px solid var(--line)}
 .v3d-bar{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;margin:0 0 12px}
 .v3d-grp{display:flex;gap:6px;flex-wrap:wrap}
 .v3d .vbtn,.v3d .chip{background:var(--btn);border:1px solid var(--line);border-radius:999px;padding:5px 11px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
@@ -473,20 +474,13 @@ textarea.inp{min-height:70px;resize:vertical;font-family:inherit}
     <!-- ================= STAGE ================= -->
     <section class="stage">
       <div class="tabs" role="tablist">
-        <button role="tab" aria-selected="true" data-tab="plan">Floorplan</button>
+        <button role="tab" aria-selected="true" data-tab="plan">3D &amp; floorplan</button>
         <button role="tab" aria-selected="false" data-tab="elev">Elevation</button>
         <button role="tab" aria-selected="false" data-tab="equip">Equipment</button>
         <button role="tab" aria-selected="false" data-tab="offer">Equipment list</button>
       </div>
 
       <div class="view" id="v-plan">
-        <div class="stagehead"><h2 id="planTitle">ModulariX Legacy <em>40 kW</em></h2><span class="eyebrow">Plan view · top-down · not to scale for print</span></div>
-        <div class="drawing" id="planWrap"></div>
-        <div class="legend">
-          <span style="--k:var(--rack)">IT rack</span><span style="--k:var(--cooler)">Cooling unit</span><span style="--k:transparent;border-color:var(--ok)">UPS (2N)</span><span style="--k:var(--panel-3)">LV panel / DCIM</span><span style="--k:var(--alert)">Fire suppression</span><span style="--k:var(--hot)">Hot aisle (contained)</span><span style="--k:var(--cold)">Cold aisle</span>
-        </div>
-        <p class="note">Layout follows the Legacy production design: technical zone at the door end (open plan, no partition wall), rack row under hot-aisle containment with in-row cooling, overhead cable tray, condensers on the end wall. Positions are indicative; engineering confirms the final GA drawing.</p>
-
         <section class="v3d" id="v3d" aria-label="3D view">
           <div class="stagehead"><h2>3D <em>view</em></h2><span class="eyebrow">Drag to rotate · scroll to zoom · right-drag to pan · hover a unit for its model</span></div>
           <div class="v3d-bar">
@@ -513,8 +507,18 @@ textarea.inp{min-height:70px;resize:vertical;font-family:inherit}
             </div>
           </div>
           <div class="v3d-stage" id="v3dStage"><canvas id="v3dCanvas" aria-label="3D model of the configured container"></canvas><div class="v3d-tip" id="v3dTip" hidden></div><div class="v3d-msg" id="v3dMsg">Loading 3D view…</div></div>
-          <p class="note">Generated from the same configuration as the drawings above. Equipment is modelled to the catalogue dimensions; finishes, cabling and the sample IT gear are illustrative. Air zones: red = contained hot aisle, blue = cold aisle. The container colour is a visual option and is purely a visual option.</p>
+          <p class="note">Generated from the same configuration as the floor plan below. Equipment is modelled to the catalogue dimensions; finishes, cabling and the sample IT gear are illustrative. Air zones: red = contained hot aisle, blue = cold aisle. The container colour is a visual option and is purely a visual option.</p>
         </section>
+
+        <div class="planblock">
+        <div class="stagehead"><h2 id="planTitle">ModulariX Legacy <em>40 kW</em></h2><span class="eyebrow">Plan view · top-down · not to scale for print</span></div>
+        <div class="drawing" id="planWrap"></div>
+        <div class="legend">
+          <span style="--k:var(--rack)">IT rack</span><span style="--k:var(--cooler)">Cooling unit</span><span style="--k:transparent;border-color:var(--ok)">UPS (2N)</span><span style="--k:var(--panel-3)">LV panel / DCIM</span><span style="--k:var(--alert)">Fire suppression</span><span style="--k:var(--hot)">Hot aisle (contained)</span><span style="--k:var(--cold)">Cold aisle</span>
+        </div>
+        <p class="note">Layout follows the Legacy production design: technical zone at the door end (open plan, no partition wall), rack row under hot-aisle containment with in-row cooling, overhead cable tray, condensers on the end wall. Positions are indicative; engineering confirms the final GA drawing.</p>
+        </div>
+
 
       </div>
 
