@@ -309,30 +309,6 @@ function build1115() {
   return { L, D: W + 2.48, extra: 8.2, deck: DECK, truck: true, inside: { x: -3.5, y: 1.65 + DECK, z: 0, yaw: -Math.PI / 2 } };
 }
 
-/* ====================================================================
-   1092  Mobile container. Placeholder: the standard Modularix module from the Journey.
-   ==================================================================== */
-function build1092() {
-  const L = 8.5, W = 3.2, H = 3.2, X0 = -L / 2, X1 = L / 2, Z0 = -W / 2, Z1 = W / 2;
-  const shell = stage(makePart(), 0, 0.12);
-  sbox(shell, X0, 0, Z0, X1, FY, Z1, { fill: 0x0B1B3E, fo: 0.97, edge: C.blue, eo: 0.8 });
-  for (const [x, z] of [[X0, Z0], [X1, Z0], [X1, Z1], [X0, Z1]]) { const sx = x < 0 ? 1 : -1, sz = z < 0 ? 1 : -1; sbox(shell, Math.min(x, x + sx * 0.22), 0, Math.min(z, z + sz * 0.22), Math.max(x, x + sx * 0.22), H, Math.max(z, z + sz * 0.22), { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.7 }); }
-  for (const z of [Z0, Z1]) { sbox(shell, X0, H - 0.14, z - (z < 0 ? 0 : 0.14), X1, H, z + (z < 0 ? 0.14 : 0), { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.5 }); for (const x of [-2.125, 0, 2.125]) sbox(shell, x - 0.05, FY, z - (z < 0 ? 0 : 0.1), x + 0.05, H - 0.14, z + (z < 0 ? 0 : 0.1) + (z < 0 ? 0.1 : 0), { fill: STEEL, fo: 0.9, edge: C.ink, eo: 0.35 }); }
-  for (const x of [X0, X1]) sbox(shell, x - (x < 0 ? 0 : 0.14), H - 0.14, Z0, x + (x < 0 ? 0.14 : 0), H, Z1, { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.5 });
-  glass(shell, X0, X1, Z0, Z1, H, 0.07);
-  const cool = stage(makePart({ rise: true }), 0.1, 0.3); for (const z0 of [-1.45, 0.05]) chiller(cool, -3.275, z0 + 0.7, 1.55, 1.4, 2.41);
-  const pw = stage(makePart({ rise: true }), 0.24, 0.42); for (const z0 of [-1.45, 0.1]) cab(pw, -2.35, z0, 0.85, 1.35, 2.31, C.power, { seam: true });
-  const fire = stage(makePart({ rise: true }), 0.38, 0.5); { const c = new T.Mesh(new T.CylinderGeometry(0.17, 0.17, 2.1, 18), fire.fm(0xD8382E, 0.97)); c.position.set(-1.12, 1.19, -1.25); fire.g.add(c); }
-  const rk = stage(makePart({ rise: true }), 0.44, 0.78), ra = { pos: [], col: [] };
-  for (let i = 0; i < 5; i++) { const x0 = -0.8 + i * 0.9; rack(rk, ra, x0, Z0 + 0.15, 0.82, 0.85, 2.26, '+z', false); rack(rk, ra, x0, 0.6, 0.82, 1.0, 2.26, '-z', false); }
-  addPoints(rk, ra.pos, ra.col, 2.4, true);
-  const ov = stage(makePart({ drop: true }), 0.74, 1); trays(ov, -4.0, 4.0, 2.78, [-0.55, 0.55], C.power);
-  for (let x = -3.8; x <= 3.8; x += 0.95) sbox(ov, x - 0.04, 2.97, Z0 + 0.12, x + 0.04, 3.07, Z1 - 0.12, { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.5 });
-  sensors(ov, [[-3.4, 2.93, -1], [-1.2, 2.93, 0], [1, 2.93, 1], [3.2, 2.93, -1]]);
-  label(-3.3, 2.7, 0, 'Cooling'); label(-1.9, 2.55, 0, 'Power'); label(1.4, 2.55, -1.2, 'IT racks');
-  return { L, D: W, extra: 0, inside: { x: 0.2, y: 1.6, z: 0, yaw: -Math.PI / 2 } };
-}
-
 const BUILD = { 'project-1023': build1023, 'project-1047': build1047, 'project-1068': build1068, 'project-1092': build1092, 'project-1115': build1115 };
 
 /* ---------- viewer ---------- */
