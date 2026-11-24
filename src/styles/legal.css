@@ -1,0 +1,9 @@
+.sub .legal{max-width:46rem}
+.sub .legal h1{font-size:clamp(34px,5vw,64px);margin-bottom:12px}
+.sub .legal h2{font-size:clamp(20px,2.2vw,28px);letter-spacing:-.015em;line-height:1.15;margin:44px 0 12px}
+.sub .legal p,.sub .legal li{color:var(--muted);font-size:16px;line-height:1.6}
+.sub .legal p{margin:0 0 14px} .sub .legal ul{margin:0 0 14px;padding-left:20px} .sub .legal li{margin-bottom:6px}
+.sub .legal a{color:var(--blue);text-underline-offset:3px}
+.sub .legal strong{color:var(--paper);font-weight:500}
+.sub .legal .tblwrap{margin:0 0 18px} .sub .legal table{min-width:560px;font-size:14px} .sub .legal td{color:var(--muted)}
+.sub .legal .upd{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 32px}

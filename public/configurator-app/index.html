@@ -534,7 +534,7 @@ textarea.inp{min-height:70px;resize:vertical;font-family:inherit}
       </div>
 
       <div class="view" id="v-offer" hidden>
-        <div class="stagehead"><h2 id="offerTitle">Propunere comerciala</h2>
+        <div class="stagehead"><h2 id="offerTitle">Commercial proposal</h2>
           <div class="seg" style="grid-auto-columns:auto;gap:4px">
             <button class="opt" data-k="lang" data-v="ro" style="padding:5px 10px"><span class="t" style="font-size:12px">RO</span></button>
             <button class="opt" data-k="lang" data-v="en" style="padding:5px 10px"><span class="t" style="font-size:12px">EN</span></button>
@@ -569,10 +569,10 @@ textarea.inp{min-height:70px;resize:vertical;font-family:inherit}
         <div class="field"><label for="cfgClient">Company</label><input class="inp" id="cfgClient" autocomplete="organization" placeholder="Company"></div>
         <div class="field"><label for="qEmail">Email *</label><input class="inp" id="qEmail" type="email" autocomplete="email" placeholder="name@company.com"></div>
         <div class="field"><label for="qPhone">Phone</label><input class="inp" id="qPhone" type="tel" autocomplete="tel" placeholder="+40 …"></div>
-        <div class="field"><label for="cfgName">Project / site</label><input class="inp" id="cfgName" placeholder="e.g. Edge site, Cluj"></div>
+        <div class="field"><label for="cfgName">Project / site</label><input class="inp" id="cfgName" placeholder="e.g. Edge site, Building A"></div>
         <div class="field"><label for="qMsg">Message</label><textarea class="inp" id="qMsg" placeholder="Timeline, location, special requirements…"></textarea></div>
         <div class="hp" aria-hidden="true"><label>Website<input id="qWeb" tabindex="-1" autocomplete="off"></label></div>
-        <label class="consent"><input type="checkbox" id="qConsent"><span>I agree that ModulariX may use these details to answer my request. *</span></label>
+        <label class="consent"><input type="checkbox" id="qConsent"><span>I agree that ModulariX may use these details to answer my request, as described in the <a href="/privacy" target="_blank" rel="noopener">Privacy Policy</a>. *</span></label>
         <div class="actions" style="margin-top:12px">
           <button class="btn primary wide" id="quoteBtn">Request a quote</button>
           <button class="btn" id="exportHtml">Download summary (HTML)</button>
@@ -1291,7 +1291,7 @@ let PB = Object.fromEntries(PB_DEF.map(r=>[r[0],r[2]]));
 const PB_LABEL = Object.fromEntries(PB_DEF.map(r=>[r[0],r[1]]));
 const PB_UNIT = Object.fromEntries(PB_DEF.map(r=>[r[0],r[3]]));
 
-const DEFAULT = {color:'white', tier:1, cool:'40', coolRed:'N+1', cont:'8.5', racks:8, kwRack:5, rackSize:'42', rackBrand:'schneider', pdu:'M', ups:'40', upsTopo:'2N', fire:1, sec:1, dcim:1, cert:0, adj:0, lang:'ro', name:'', client:'', author:''};
+const DEFAULT = {color:'white', tier:1, cool:'40', coolRed:'N+1', cont:'8.5', racks:8, kwRack:5, rackSize:'42', rackBrand:'schneider', pdu:'M', ups:'40', upsTopo:'2N', fire:1, sec:1, dcim:1, cert:0, adj:0, lang:'en', name:'', client:'', author:''};
 let S = {...DEFAULT};
 let showLines = false;
 

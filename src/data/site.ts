@@ -1,7 +1,7 @@
 export const SITE = {
   name: 'Modularix',
   email: 'office@synotech.com',
-  url: 'https://modularix.example', // TODO: replace with the production domain
+  url: 'https://modularix.world',
   configuratorUrl: 'https://capable-pudding-030435.netlify.app/',
   registerUrl: 'https://uptimeinstitute.com/tier-certification/tier-certification-list',
   description:
@@ -57,3 +57,18 @@ export const CONFIGS: Config[] = [
   { id: 'CFG-05', slug: 'custom', kind: 'Bespoke', title: 'Custom', text: 'Bespoke modules engineered to your specification, from the shell inward.', tags: ['Your spec'] },
   { id: 'CFG-06', slug: 'power-cooling', kind: 'Plant', title: 'Power & Cooling Skids', text: 'Factory-built power and cooling modules that pair with any configuration, or with your existing facility.', tags: ['Pairs with any', 'Existing sites'] },
 ];
+
+/**
+ * Legal identity used on the Privacy, Cookies and Terms pages.
+ * Keep in sync with the company registration.
+ */
+export const LEGAL = {
+  entity: 'MODULARIX.WORLD S.R.L.',
+  address: 'Str. Știrbei Vodă nr. 104-106, Sector 1, Bucharest, Romania',
+  regNo: 'J2021002952401',
+  vat: 'RO43764389',
+  email: 'office@synotech.com',
+  updated: '24 November 2026',
+  linkedInPartnerId: '11424329',
+  metaPixelId: '2519011108507099',
+} as const;

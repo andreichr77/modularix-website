@@ -277,7 +277,63 @@ function build1092() {
   return { L, D: W, extra: 0, inside: { x: 0.2, y: 1.6, z: 0, yaw: -Math.PI / 2 } };
 }
 
-const BUILD = { 'project-1023': build1023, 'project-1047': build1047, 'project-1068': build1068, 'project-1092': build1092 };
+function build1115() {
+  const L = 13.2, W = 3.2, H = 3.0, hx = L / 2, hl = 3.85, DECK = 1.5;
+  const shell = stage(makePart(), 0, 0.12);
+  slab(shell, -hx, -W / 2, hx, W / 2);
+  truss(shell, -hx, -hl - 0.4, -W / 2, W / 2, FY, H, 0.45); truss(shell, hl + 0.4, hx, -W / 2, W / 2, FY, H, 0.45);
+  frameBox(shell, -hl, hl, -W / 2, W / 2, FY, H, 0.8);
+  for (const x of [-hl, -hl / 2, 0, hl / 2, hl]) for (const z of [-W / 2, W / 2]) sbox(shell, x - 0.06, FY, z - 0.06, x + 0.06, H, z + 0.06, { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.6 });
+  glass(shell, -hl, hl, -W / 2, W / 2, H, 0.08);
+  door(shell, hl - 1.3, 0, 0, H, W / 2 + 0.01);
+  const cool = stage(makePart({ rise: true }), 0.1, 0.3);
+  chiller(cool, -5.425, 0, 1.2, 3.09, 1.97); chiller(cool, 5.425, 0, 1.2, 3.09, 1.97);
+  const rk = stage(makePart({ rise: true }), 0.42, 0.76), ra = { pos: [], col: [] }; const irx = [];
+  let x = -3.3;
+  for (let k = 0; k < 8; k++) { rack(rk, ra, x, -1.45, 0.6, 1.2, 1.99, '+z', false); x += 0.6; if (k === 1 || k === 4 || k === 6) { inrow(rk, x, -1.45, 0.3, 1.1, 2.0); irx.push(x + 0.15); x += 0.3; } }
+  x = -3.3; for (let k = 0; k < 8; k++) { rack(rk, ra, x, 0.4, 0.6, 1.1, 1.99, '-z', k % 2 === 0); x += 0.6; if (k === 1 || k === 4 || k === 6) { inrow(rk, x, 0.4, 0.3, 1.1, 2.0); x += 0.3; } }
+  addPoints(rk, ra.pos, ra.col, 2.4, true);
+  const pw = stage(makePart({ rise: true }), 0.24, 0.42);
+  [[-3.1, -2.3], [-2.1, -2.3], [2.3, 2.3], [3.0, 2.3]].forEach(([ux, uz]) => cab(pw, ux, uz - 0.3, 0.908, 0.6, 1.98, C.it, { seam: true }));
+  cab(pw, hl - 0.6, W / 2 + 0.3, 0.5, 0.9, 2.0, C.power, { seam: true });
+  const pp = stage(makePart({ drop: true }), 0.7, 0.86);
+  pipes(pp, -5.425, 5.425, 2.62, -0.1, 0.1, irx.concat([-5.425, 5.425]), 2.1);
+  const ov = stage(makePart({ drop: true }), 0.8, 0.96);
+  trays(ov, -3.6, 3.6, 2.4, [-0.8, 0.9], C.power);        // overhead busbars
+  for (let xx = -3.6; xx <= 3.7; xx += 0.9) sbox(ov, xx - 0.04, 2.9, -W / 2 + 0.1, xx + 0.04, 2.98, W / 2 - 0.1, { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.5 });
+  sensors(ov, [[-2.6, 2.95, -1], [0, 2.95, 0], [2.6, 2.95, 1], [-hl + 0.3, 2.9, 1.3]]);
+  const gn = stage(makePart({ rise: true }), 0.9, 1), ga = { pos: [], col: [] };
+  generator(gn, 9.4, -0.85, 3.59, 1.3, 1.8, ga); generator(gn, 9.4, 0.85, 3.59, 1.3, 1.8, ga); addPoints(gn, ga.pos, ga.col, 5, true);
+  const mid = stage(makePart(), 0.7, 1); person(mid, 0.0, 0.0);
+  label(-5.425, 2.3, 0, 'Outdoor chiller'); label(5.425, 2.3, 0, 'Outdoor chiller'); label(0, 2.45, -1.5, 'Rack line, in-row cooling'); label(-2.6, 2.2, -2.4, 'UPS and batteries'); label(9.4, 2.1, 0, '2 generator sets on the trailer'); label(0, 2.9, 0.5, 'Overhead busbar');
+  return { L, D: W + 2.48, extra: 8.2, deck: DECK, truck: true, inside: { x: -3.5, y: 1.65 + DECK, z: 0, yaw: -Math.PI / 2 } };
+}
+
+/* ====================================================================
+   1092  Mobile container. Placeholder: the standard Modularix module from the Journey.
+   ==================================================================== */
+function build1092() {
+  const L = 8.5, W = 3.2, H = 3.2, X0 = -L / 2, X1 = L / 2, Z0 = -W / 2, Z1 = W / 2;
+  const shell = stage(makePart(), 0, 0.12);
+  sbox(shell, X0, 0, Z0, X1, FY, Z1, { fill: 0x0B1B3E, fo: 0.97, edge: C.blue, eo: 0.8 });
+  for (const [x, z] of [[X0, Z0], [X1, Z0], [X1, Z1], [X0, Z1]]) { const sx = x < 0 ? 1 : -1, sz = z < 0 ? 1 : -1; sbox(shell, Math.min(x, x + sx * 0.22), 0, Math.min(z, z + sz * 0.22), Math.max(x, x + sx * 0.22), H, Math.max(z, z + sz * 0.22), { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.7 }); }
+  for (const z of [Z0, Z1]) { sbox(shell, X0, H - 0.14, z - (z < 0 ? 0 : 0.14), X1, H, z + (z < 0 ? 0.14 : 0), { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.5 }); for (const x of [-2.125, 0, 2.125]) sbox(shell, x - 0.05, FY, z - (z < 0 ? 0 : 0.1), x + 0.05, H - 0.14, z + (z < 0 ? 0 : 0.1) + (z < 0 ? 0.1 : 0), { fill: STEEL, fo: 0.9, edge: C.ink, eo: 0.35 }); }
+  for (const x of [X0, X1]) sbox(shell, x - (x < 0 ? 0 : 0.14), H - 0.14, Z0, x + (x < 0 ? 0.14 : 0), H, Z1, { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.5 });
+  glass(shell, X0, X1, Z0, Z1, H, 0.07);
+  const cool = stage(makePart({ rise: true }), 0.1, 0.3); for (const z0 of [-1.45, 0.05]) chiller(cool, -3.275, z0 + 0.7, 1.55, 1.4, 2.41);
+  const pw = stage(makePart({ rise: true }), 0.24, 0.42); for (const z0 of [-1.45, 0.1]) cab(pw, -2.35, z0, 0.85, 1.35, 2.31, C.power, { seam: true });
+  const fire = stage(makePart({ rise: true }), 0.38, 0.5); { const c = new T.Mesh(new T.CylinderGeometry(0.17, 0.17, 2.1, 18), fire.fm(0xD8382E, 0.97)); c.position.set(-1.12, 1.19, -1.25); fire.g.add(c); }
+  const rk = stage(makePart({ rise: true }), 0.44, 0.78), ra = { pos: [], col: [] };
+  for (let i = 0; i < 5; i++) { const x0 = -0.8 + i * 0.9; rack(rk, ra, x0, Z0 + 0.15, 0.82, 0.85, 2.26, '+z', false); rack(rk, ra, x0, 0.6, 0.82, 1.0, 2.26, '-z', false); }
+  addPoints(rk, ra.pos, ra.col, 2.4, true);
+  const ov = stage(makePart({ drop: true }), 0.74, 1); trays(ov, -4.0, 4.0, 2.78, [-0.55, 0.55], C.power);
+  for (let x = -3.8; x <= 3.8; x += 0.95) sbox(ov, x - 0.04, 2.97, Z0 + 0.12, x + 0.04, 3.07, Z1 - 0.12, { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.5 });
+  sensors(ov, [[-3.4, 2.93, -1], [-1.2, 2.93, 0], [1, 2.93, 1], [3.2, 2.93, -1]]);
+  label(-3.3, 2.7, 0, 'Cooling'); label(-1.9, 2.55, 0, 'Power'); label(1.4, 2.55, -1.2, 'IT racks');
+  return { L, D: W, extra: 0, inside: { x: 0.2, y: 1.6, z: 0, yaw: -Math.PI / 2 } };
+}
+
+const BUILD = { 'project-1023': build1023, 'project-1047': build1047, 'project-1068': build1068, 'project-1092': build1092, 'project-1115': build1115 };
 
 /* ---------- viewer ---------- */
 export function startViewer(canvas, project, hooks = {}) {
@@ -298,6 +354,24 @@ export function startViewer(canvas, project, hooks = {}) {
   mod = new T.Group(); scene.add(mod); parts = []; seq = []; labels = [];
   const info = (BUILD[project.id] || build1092)();
   const R = Math.max(info.L + (info.extra || 0), info.D, 12);
+
+  // transportable project: the module rides on the low-bed trailer behind the tractor, drawn like the Journey
+  if (info.truck) {
+    mod.position.y = info.deck;
+    labels.forEach((l) => { l.p.y += info.deck; });
+    const occ = new T.MeshBasicMaterial({ color: 0x050C20, polygonOffset: true, polygonOffsetFactor: 1, polygonOffsetUnits: 1 });
+    const bake = (root, angle) => { root.updateMatrixWorld(true); const out = []; root.traverse((n) => { if (n.isMesh) { const g = n.geometry.clone(); g.applyMatrix4(n.matrixWorld); if (!g.attributes.normal) g.computeVertexNormals(); out.push({ g, e: new T.EdgesGeometry(g, angle) }); } }); return out; };
+    const stretch = (geos, extra) => {
+      const bb = new T.Box3(); for (const { g } of geos) { g.computeBoundingBox(); bb.union(g.boundingBox); }
+      const cz = (bb.min.z + bb.max.z) / 2, h = (bb.max.z - bb.min.z) / 2, a = cz - 0.25 * h, b = cz + 0.25 * h, k = (b - a + extra) / (b - a);
+      return geos.map(({ g }) => { const pos = g.attributes.position; for (let i = 0; i < pos.count; i++) { const z = pos.getZ(i); pos.setZ(i, z < a ? z - extra / 2 : z > b ? z + extra / 2 : a - extra / 2 + (z - a) * k); } pos.needsUpdate = true; g.computeBoundingBox(); g.computeVertexNormals(); return { g, e: new T.EdgesGeometry(g, 30) }; });
+    };
+    const dress = (geos, color, opacity) => { const grp = new T.Group(); for (const { g, e } of geos) { grp.add(new T.Mesh(g, occ)); const l = new T.LineSegments(e, lineMat(color, opacity)); l.frustumCulled = false; grp.add(l); } return grp; };
+    const rig = new T.Group(), inner = new T.Group(); inner.rotation.y = Math.PI / 2; rig.add(inner); scene.add(rig);
+    const ld = new GLTFLoader();
+    ld.load('/models/scania-line.glb', (gl) => { const t = dress(bake(gl.scene, 32), C.cool, 0.95); t.position.set(0, 0, 11.0); inner.add(t); }, undefined, () => {});
+    ld.load('/models/flatbed-line.glb', (gl) => { const t = dress(stretch(bake(gl.scene, 30), 4.1), C.blue, 0.9); t.position.set(0, 0.2, 1.95); inner.add(t); }, undefined, () => {});
+  }
 
   // optional real model dropped in later
   if (project.glb) new GLTFLoader().load(`/models/projects/${project.id}.glb`, (gltf) => { mod.visible = false; const bb = new T.Box3().setFromObject(gltf.scene), c = bb.getCenter(new T.Vector3()); gltf.scene.position.set(-c.x, -bb.min.y, -c.z); scene.add(gltf.scene); hooks.onModel?.('glb'); }, undefined, () => {});

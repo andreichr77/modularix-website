@@ -82,4 +82,18 @@ export const PROJECTS: Project[] = [
     tags: ['Mobile', 'Containerised'],
     model: { L: 12.2, W: 2.44, H: 2.6, body: [0, 12.2], racks: 10, rackH: 2.0, inrow: 4, ups: 1, chillers: [], gens: 0, preview: true },
   },
+  {
+    id: 'project-1115',
+    name: 'Project 1115',
+    kind: 'Transportable',
+    summary: 'Open-plan data hall built to travel: the finished module rides on a low-bed trailer with its two outdoor chillers in the end bays and two generator sets on the same trailer. Delivered as one road load.',
+    stats: [
+      { label: 'Transport length', value: '21.7 m with tractor' },
+      { label: 'Width', value: '3.2 m' },
+      { label: 'Module', value: '8.5 m hall + 2 x 2.35 m chiller bays' },
+      { label: 'Plant', value: '2 generator sets on the trailer' },
+    ],
+    tags: ['Transportable', 'In-row cooling', 'Generator ready'],
+    model: { L: 13.2, W: 3.2, H: 3.0, body: [2.75, 10.45], racks: 14, rackH: 2.0, inrow: 6, ups: 2, chillers: [1.35, 11.85], gens: 2 },
+  },
 ];

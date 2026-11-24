@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next';
+import ConsentBanner from '@/components/consent/ConsentBanner';
 import './globals.css';
 import { SITE } from '@/data/site';
 
@@ -33,7 +34,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+        <ConsentBanner />
+      </body>
     </html>
   );
 }
