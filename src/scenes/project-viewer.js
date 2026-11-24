@@ -281,9 +281,14 @@ function build1115() {
   const L = 13.2, W = 3.2, H = 3.0, hx = L / 2, hl = 3.85, DECK = 1.5;
   const shell = stage(makePart(), 0, 0.12);
   slab(shell, -hx, -W / 2, hx, W / 2);
-  truss(shell, -hx, -hl - 0.4, -W / 2, W / 2, FY, H, 0.45); truss(shell, hl + 0.4, hx, -W / 2, W / 2, FY, H, 0.45);
+  truss(shell, -hx, -hl - 0.4, -W / 2, W / 2, FY, H, 0.75); truss(shell, hl + 0.4, hx, -W / 2, W / 2, FY, H, 0.75);
   frameBox(shell, -hl, hl, -W / 2, W / 2, FY, H, 0.8);
-  for (const x of [-hl, -hl / 2, 0, hl / 2, hl]) for (const z of [-W / 2, W / 2]) sbox(shell, x - 0.06, FY, z - 0.06, x + 0.06, H, z + 0.06, { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.6 });
+  // full skeleton over the whole 13.2 m: corner and wall posts, top and bottom rails, roof cross beams
+  const SK = { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.6 };
+  for (const x of [-hx, -hl - 0.4, -hl, -hl / 2, 0, hl / 2, hl, hl + 0.4, hx]) for (const z of [-W / 2, W / 2]) sbox(shell, x - 0.06, FY, z - 0.06, x + 0.06, H, z + 0.06, SK);
+  for (const z of [-W / 2, 0, W / 2]) sbox(shell, -hx, H - 0.1, z - 0.05, hx, H, z + 0.05, SK);
+  for (const z of [-W / 2, W / 2]) sbox(shell, -hx, FY, z - 0.05, hx, FY + 0.1, z + 0.05, SK);
+  for (let xx = -hx; xx <= hx + 0.01; xx += 1.1) sbox(shell, xx - 0.04, H - 0.1, -W / 2, xx + 0.04, H, W / 2, SK);
   glass(shell, -hl, hl, -W / 2, W / 2, H, 0.08);
   door(shell, hl - 1.3, 0, 0, H, W / 2 + 0.01);
   const cool = stage(makePart({ rise: true }), 0.1, 0.3);
@@ -294,18 +299,17 @@ function build1115() {
   x = -3.3; for (let k = 0; k < 8; k++) { rack(rk, ra, x, 0.4, 0.6, 1.1, 1.99, '-z', k % 2 === 0); x += 0.6; if (k === 1 || k === 4 || k === 6) { inrow(rk, x, 0.4, 0.3, 1.1, 2.0); x += 0.3; } }
   addPoints(rk, ra.pos, ra.col, 2.4, true);
   const pw = stage(makePart({ rise: true }), 0.24, 0.42);
-  [[-3.1, -2.3], [-2.1, -2.3], [2.3, 2.3], [3.0, 2.3]].forEach(([ux, uz]) => cab(pw, ux, uz - 0.3, 0.908, 0.6, 1.98, C.it, { seam: true }));
-  cab(pw, hl - 0.6, W / 2 + 0.3, 0.5, 0.9, 2.0, C.power, { seam: true });
+  // UPS and battery cabinets stay inside the 3.2 m envelope, at the end of each rack row
+  [[2.8, -1.5], [2.8, -0.9], [2.8, 0.35], [2.8, 0.95]].forEach(([ux, uz]) => cab(pw, ux, uz, 0.908, 0.6, 1.98, C.it, { seam: true }));
   const pp = stage(makePart({ drop: true }), 0.7, 0.86);
   pipes(pp, -5.425, 5.425, 2.62, -0.1, 0.1, irx.concat([-5.425, 5.425]), 2.1);
   const ov = stage(makePart({ drop: true }), 0.8, 0.96);
   trays(ov, -3.6, 3.6, 2.4, [-0.8, 0.9], C.power);        // overhead busbars
-  for (let xx = -3.6; xx <= 3.7; xx += 0.9) sbox(ov, xx - 0.04, 2.9, -W / 2 + 0.1, xx + 0.04, 2.98, W / 2 - 0.1, { fill: STEEL, fo: 0.95, edge: C.ink, eo: 0.5 });
   sensors(ov, [[-2.6, 2.95, -1], [0, 2.95, 0], [2.6, 2.95, 1], [-hl + 0.3, 2.9, 1.3]]);
   const gn = stage(makePart({ rise: true }), 0.9, 1), ga = { pos: [], col: [] };
   generator(gn, 9.4, -0.85, 3.59, 1.3, 1.8, ga); generator(gn, 9.4, 0.85, 3.59, 1.3, 1.8, ga); addPoints(gn, ga.pos, ga.col, 5, true);
   const mid = stage(makePart(), 0.7, 1); person(mid, 0.0, 0.0);
-  label(-5.425, 2.3, 0, 'Outdoor chiller'); label(5.425, 2.3, 0, 'Outdoor chiller'); label(0, 2.45, -1.5, 'Rack line, in-row cooling'); label(-2.6, 2.2, -2.4, 'UPS and batteries'); label(9.4, 2.1, 0, '2 generator sets on the trailer'); label(0, 2.9, 0.5, 'Overhead busbar');
+  label(-5.425, 2.3, 0, 'Outdoor chiller'); label(5.425, 2.3, 0, 'Outdoor chiller'); label(0, 2.45, -1.5, 'Rack line, in-row cooling'); label(3.25, 2.3, -0.9, 'UPS and batteries'); label(9.4, 2.1, 0, '2 generator sets on the trailer'); label(0, 2.9, 0.5, 'Overhead busbar');
   return { L, D: W + 2.48, extra: 8.2, deck: DECK, truck: true, inside: { x: -3.5, y: 1.65 + DECK, z: 0, yaw: -Math.PI / 2 } };
 }
 
