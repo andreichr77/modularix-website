@@ -1,0 +1,15 @@
+.sub .jobs{border:1px solid var(--line);margin-top:28px}
+.sub .job{display:grid;grid-template-columns:1fr;gap:18px;padding:24px;border-bottom:1px solid var(--line);background:linear-gradient(180deg,rgba(11,30,66,.35),rgba(4,8,20,.1))}
+.sub .job:last-child{border-bottom:0}
+@media (min-width:900px){.sub .job{grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) auto;gap:40px;align-items:start}}
+.sub .job h3{margin:0 0 10px;font-size:clamp(20px,2vw,26px)}
+.sub .job .open{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:4px 8px;color:var(--blue);border:1px solid rgba(79,176,255,.45);background:rgba(79,176,255,.14)}
+.sub .job dl{margin:0;display:grid;gap:14px}
+.sub .job dt{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:4px}
+.sub .job dd{margin:0;color:var(--muted);font-size:15px;line-height:1.5}
+.sub .job .cta{margin:0}
+.sub .offer{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:12px}
+.sub .offer li{color:var(--muted);font-size:16px;padding-left:20px;position:relative}
+.sub .offer li::before{content:"";position:absolute;left:0;top:.55em;width:7px;height:7px;background:var(--blue)}
+.sub .smallnote{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--muted);line-height:1.6;max-width:44rem;margin-top:22px}
+.sub .smallnote a{color:var(--blue)}

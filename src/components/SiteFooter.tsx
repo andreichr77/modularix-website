@@ -10,6 +10,7 @@ export default function SiteFooter() {
         <Link href="/journey">Journey</Link>
         <Link href="/configure">Configure</Link>
         <Link href="/company">Company</Link>
+        <Link href="/careers">Careers</Link>
         <Link href="/#contact">Contact</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/cookies">Cookies</Link>

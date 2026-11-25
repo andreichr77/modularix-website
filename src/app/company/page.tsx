@@ -64,7 +64,7 @@ export default function CompanyPage() {
   </div>
   <div className="grid2" style={{marginTop: 'clamp(56px,8vw,112px)'}}>
     <div><p className="legend">In the press</p><p style={{fontSize: 'clamp(18px,1.8vw,24px)', fontWeight: 500, letterSpacing: '-.01em', lineHeight: '1.3', margin: 0}}>“Synotech, lider detașat pe piața centrelor de date din România, lansează Modularix”</p><p className="mono" style={{marginTop: 10}}>Ziarul Financiar - September 2026</p></div>
-    <div><p className="legend">Talk to us</p><p className="lede">Tell us the workload and the site. We come back with a drawing.</p><div className="cta"><Link className="primary" href="/#contact">Contact</Link><a href="https://synotech.com" target="_blank" rel="noopener">synotech.com</a></div></div>
+    <div><p className="legend">Talk to us</p><p className="lede">Tell us the workload and the site. We come back with a drawing.</p><div className="cta"><Link className="primary" href="/#contact">Contact</Link><Link href="/careers">Careers</Link><a href="https://synotech.com" target="_blank" rel="noopener">synotech.com</a></div></div>
   </div>
 </div>
       </main>
